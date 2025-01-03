@@ -1,3 +1,7 @@
+# CLITodo
+
+![Swift](https://github.com/asiermarques/swift-cli-todo/actions/workflows/swift.yml/badge.svg)
+
 A simple CLI todo app written in Swift for learning purposes ^^
 
 ## Usage
