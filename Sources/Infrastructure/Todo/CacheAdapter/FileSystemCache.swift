@@ -3,11 +3,16 @@ import Foundation
 class FileSystemCache: Cache {
     private let fileManager = FileManager.default
     private let filePath: String
+    private let directory: String
 
-    init() {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(
-            .documentDirectory, .userDomainMask, true)[0]
-        self.filePath = (documentsPath as NSString).appendingPathComponent("todos.json")
+    init(directory: String? = nil) {
+        if let directory = directory {
+            self.directory = directory
+        } else {
+            self.directory =
+                NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        }
+        self.filePath = (self.directory as NSString).appendingPathComponent("todos.json")
     }
 
     func save(_ todos: [Todo]) throws {
