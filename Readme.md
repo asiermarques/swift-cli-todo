@@ -17,3 +17,4 @@ swift run CLITodo
 - `delete <id>`: Delete a todo item.
 - `list`: List all todo items.
 - `help`: Show help information.
+- `exit`: Exit the app.
