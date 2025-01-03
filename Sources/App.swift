@@ -1,10 +1,10 @@
 import Foundation
 
 class App {
-    private let manager: TodoManager
+    private let cliController: CliController
 
-    init() {
-        self.manager = TodoManager()
+    init(cache: Cache = InMemoryCache()) {
+        self.cliController = CliController(cache: cache)
     }
 
     func run() {
@@ -23,56 +23,10 @@ class App {
 
             let argument = components.count > 1 ? String(components[1]) : ""
 
-            switch command {
-            case .add:
-                guard !argument.isEmpty else {
-                    print("Please provide a todo title")
-                    continue
-                }
-                let todo = manager.addTodo(title: argument)
-                print("Added todo: \(todo.title)")
-
-            case .list:
-                let todos = manager.listTodos()
-                if todos.isEmpty {
-                    print("No todos yet")
-                } else {
-                    print("Todos:")
-                    todos.enumerated().forEach { (index, todo) in
-                        print("\(index+1). \(todo.description)")
-                    }
-                }
-
-            case .toggle:
-                guard let index = Int(argument),
-                    index > 0,
-                    index <= manager.todos.count
-                else {
-                    print("Please provide a valid todo number")
-                    continue
-                }
-                let todo = manager.todos[index - 1]
-                manager.toggleTodo(id: todo.id)
-                print("Toggled: \(todo.title)")
-
-            case .delete:
-                guard let index = Int(argument),
-                    index > 0,
-                    index <= manager.todos.count
-                else {
-                    print("Please provide a valid todo number")
-                    continue
-                }
-                let todo = manager.todos[index - 1]
-                manager.deleteTodo(id: todo.id)
-                print("Deleted: \(todo.title)")
-
-            case .help:
-                Command.showHelp()
-
-            case .exit:
-                print("Goodbye!")
-                return
+            if !cliController.run(
+                command: command, argument: argument, print: { (param: String) in print(param) })
+            {
+                break
             }
         }
     }

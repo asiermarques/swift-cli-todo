@@ -1,6 +1,6 @@
 import Foundation
 
-struct Todo: CustomStringConvertible {
+struct Todo: CustomStringConvertible, Codable {
     var id: UUID
     var title: String
     var isCompleted: Bool

@@ -4,20 +4,25 @@ import XCTest
 
 final class TodoManagerTests: XCTestCase {
     var manager: TodoManager!
+    var mockCache: MockCache!
 
     override func setUp() {
         super.setUp()
-        manager = TodoManager()
+        mockCache = MockCache()
+        manager = TodoManager(cache: mockCache)
     }
 
     func testAddTodo() {
-        _ = manager.addTodo(title: "Test todo")
+        let todo = manager.addTodo(title: "Test todo")
+
         XCTAssertEqual(manager.todos.count, 1)
-        XCTAssertEqual(manager.todos[0].title, "Test todo")
+        XCTAssertEqual(todo.title, "Test todo")
+        XCTAssertFalse(todo.isCompleted)
     }
 
     func testToggleTodo() {
         let todo = manager.addTodo(title: "Test todo")
+
         manager.toggleTodo(id: todo.id)
         XCTAssertTrue(manager.todos[0].isCompleted)
 
@@ -34,7 +39,7 @@ final class TodoManagerTests: XCTestCase {
     }
 
     func testListTodos() {
-        XCTAssertEqual(manager.listTodos().count, 0, "Should start with empty list")
+        XCTAssertEqual(manager.listTodos().count, 0)
 
         _ = manager.addTodo(title: "First todo")
         _ = manager.addTodo(title: "Second todo")
