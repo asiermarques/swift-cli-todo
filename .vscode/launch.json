@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:CLITodo}",
+      "name": "Debug CLITodo",
+      "program": "${workspaceFolder:CLITodo}/.build/debug/CLITodo",
+      "preLaunchTask": "swift: Build Debug CLITodo"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:CLITodo}",
+      "name": "Release CLITodo",
+      "program": "${workspaceFolder:CLITodo}/.build/release/CLITodo",
+      "preLaunchTask": "swift: Build Release CLITodo"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:CLITodo}",
+      "name": "Debug Todo",
+      "program": "${workspaceFolder:CLITodo}/.build/debug/Todo",
+      "preLaunchTask": "swift: Build Debug Todo"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:CLITodo}",
+      "name": "Release Todo",
+      "program": "${workspaceFolder:CLITodo}/.build/release/Todo",
+      "preLaunchTask": "swift: Build Release Todo"
+    }
+  ]
+}
