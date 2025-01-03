@@ -39,7 +39,7 @@ class App {
                 } else {
                     print("Todos:")
                     todos.enumerated().forEach { (index, todo) in
-                        print("\(index + 1). [\(todo.isCompleted ? "✓" : " ")] \(todo.title)")
+                        print("\(index+1). \(todo.description)")
                     }
                 }
 

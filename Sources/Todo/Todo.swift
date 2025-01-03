@@ -1,6 +1,6 @@
 import Foundation
 
-struct Todo {
+struct Todo: CustomStringConvertible {
     var id: UUID
     var title: String
     var isCompleted: Bool
@@ -9,5 +9,9 @@ struct Todo {
         self.id = id
         self.title = title
         self.isCompleted = isCompleted
+    }
+
+    var description: String {
+        "\(isCompleted ? "✅" : "❌") \(title)"
     }
 }
