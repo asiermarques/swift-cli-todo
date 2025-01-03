@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import Todo
+@testable import CLITodo
 
 final class TodoManagerTests: XCTestCase {
     var manager: TodoManager!
